@@ -86,7 +86,9 @@ public class GoogleCastModule extends ReactContextBaseJavaModule implements Life
     @ReactMethod
     public void stopScan() {
         Log.e(REACT_CLASS, "Stopping Scan");
-        mCastManager.decrementUiCounter();
+        if (mCastManager != null) {
+            mCastManager.decrementUiCounter();
+        }
     }
 
     @ReactMethod
@@ -197,7 +199,13 @@ public class GoogleCastModule extends ReactContextBaseJavaModule implements Life
         Log.e(REACT_CLASS, "start scan Chromecast ");
         if (mCastManager != null) {
             mCastManager = VideoCastManager.getInstance();
-            mCastManager.incrementUiCounter();
+            UiThreadUtil.runOnUiThread(new Runnable() {
+                public void run() {
+                    mCastManager.incrementUiCounter();
+                    mCastManager.startCastDiscovery();
+                }
+            });
+
             Log.e(REACT_CLASS, "Chromecast Initialized by getting instance");
         } else {
             final CastConfiguration options = GoogleCastService.getCastConfig();
@@ -257,6 +265,7 @@ public class GoogleCastModule extends ReactContextBaseJavaModule implements Life
                     };
                     mCastManager.addVideoCastConsumer(mCastConsumer);
                     mCastManager.incrementUiCounter();
+                    mCastManager.startCastDiscovery();
                     Log.e(REACT_CLASS, "Chromecast Initialized for the first time!");
                 }
             });
