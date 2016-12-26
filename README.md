@@ -1,45 +1,20 @@
+
 [![npm version](https://badge.fury.io/js/react-native-google-cast.svg)](https://badge.fury.io/js/react-native-google-cast)
 # react-native-google-cast
 
 A library that unifies both android and iOS chromecast sdk
 
-##Installation
-`npm i react-native-google-cast --save`
+## Getting started
 
-#### iOS
+`$ npm install react-native-google-cast --save`
 
-  - Open your Xcode project
-  - In `Libraries` choose `Add files...` and add the folder `ios/RNGoogleCast` from the `node_modules/react-native-google-cast/ios` folder. Be sure that the option `copy if needed` is unchecked.
-  - Add `pod 'google-cast-sdk'` to your Podfile. This is the easier way to have the sdk up to date.
-  - If you get an error after building the project, be sure that `$(inherited)` was added to `Other Linker Flags` in `Build Settings` 
-  
-       <img width="508" alt="screen shot 2016-07-01 at 11 05 32 pm" src="https://cloud.githubusercontent.com/assets/10927770/16538156/8cb11522-3fe0-11e6-98dd-4f5acbebefb9.png">
-  - Rebuild your project. iOS is ready for the battle!
+### Installation
 
-#### Android
+`$ react-native link react-native-google-cast`
 
-**android/settings.gradle**
-```
-include ':react-native-google-cast'
-project(':react-native-google-cast').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-google-cast/android')
-```
-
-**android/app/build.gradle**
-```
-dependencies {
-   ...
-   compile project(':react-native-google-cast')
-}
-```
-**If you're on RN > 29 apply these changes in `MainApplication.java`, otherwise in `MainActivity.java`**
-
-On top, where imports are:
-```java
-import com.googlecast.GoogleCastPackage;
-```
-
-Under `new MainReactPackage()`:
-`new GoogleCastPackage()`
+### iOS Heads Up
+  - This library requires Cocoapods to manage Chromecast SDK.
+  - Add `pod 'google-cast-sdk'` to your Podfile. This is the easier way to have the SDK up to date.
 
 ##Usage##
 ```js
@@ -94,11 +69,13 @@ DeviceEventEmitter.addListener(Chromecast.MEDIA_LOADED, () => { /* callback */ }
 ```
 ##Constants##
 ```js
-
-  DEVICE_CHANGED,
   DEVICE_AVAILABLE,
   DEVICE_CONNECTED,
+  DEVICE_DISCONNECTED,
   MEDIA_LOADED,
-```  
+```
 ##Example##
-Refer to [my example repo](https://github.com/charliesbox/react-native-google-cast-example) too see an implementation of this library
+Refer to the example folder to find an implementation of this project
+
+## Contribution
+Contributions are welcome !

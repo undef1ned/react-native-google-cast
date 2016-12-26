@@ -1,5 +1,2 @@
-build/
-.idea
 example/
-android/build
 *.iml
