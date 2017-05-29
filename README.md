@@ -16,13 +16,25 @@ A library that unifies both android and iOS chromecast sdk
   - This library requires Cocoapods to manage Chromecast SDK.
   - Add `pod 'google-cast-sdk'` to your Podfile. This is the easier way to have the SDK up to date.
 
-##Usage##
+### Android Heads Up
+  - This library requires Google Play Services, Media Router and Google Cast dependencies to manage Chromecast SDK.
+  - Add 
+  ``` 
+  compile 'com.google.android.gms:play-services-cast:9.4.0'
+  compile 'com.android.support:mediarouter-v7:23.0.1'
+  ```
+into your your app's `build.gradle` dependencies. `mediarouter`version must match with your `appcompat` version.
+
+## Usage
 ```js
 // Require the module
 import Chromecast from 'react-native-google-cast';
 
-// Init Chromecast SDK and starts looking for devices
+// Init Chromecast SDK and starts looking for devices (uses DEFAULT APP ID)
 Chromecast.startScan();
+
+// Init Chromecast SDK and starts looking for devices using registered APP ID
+Chromecast.startScan(APP_ID);
 
 // Does what the method says. It saves resources, use it when leaving your current view
 Chromecast.stopScan();
@@ -54,7 +66,7 @@ Chromecast.togglePauseCast();
 Chromecast.getStreamPosition();
 
 ```
-##Events##
+## Events
 Chromecast uses events to let you know when you should start playing with the service, like streaming the media.
 ```js
 // To know if there are chromecasts around
@@ -67,15 +79,21 @@ DeviceEventEmitter.addListener(Chromecast.DEVICE_CONNECTED, () => { /* callback 
 DeviceEventEmitter.addListener(Chromecast.MEDIA_LOADED, () => { /* callback */ });
 
 ```
-##Constants##
+## Constants
 ```js
   DEVICE_AVAILABLE,
   DEVICE_CONNECTED,
   DEVICE_DISCONNECTED,
   MEDIA_LOADED,
 ```
-##Example##
-Refer to the example folder to find an implementation of this project
+## Example
+Refer to the example folder to find an implementation of this project.
+Remember to use 
+
+* `pod install`
+* `react-native link react-native-google-cast` 
+
+to try it!
 
 ## Contribution
 Contributions are welcome !
