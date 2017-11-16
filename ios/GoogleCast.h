@@ -1,5 +1,5 @@
 #import <React/RCTBridgeModule.h>
-#import <GoogleCast/GoogleCast.h>
+#import "Pods/google-cast-sdk/GoogleCastSDK-2.10.4-Release/GoogleCast.framework/Headers/GoogleCast.h"
 
 @interface GoogleCast : NSObject <RCTBridgeModule, GCKDeviceScannerListener, GCKDeviceManagerDelegate,GCKMediaControlChannelDelegate>
 
